@@ -18,7 +18,7 @@ const StartGameScreen = ({ pickNum }) => {
       ]);
       return;
     }
-    pickNum(input);
+    pickNum(enteredNum);
   };
 
   return (
