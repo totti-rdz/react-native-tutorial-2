@@ -2,6 +2,8 @@ import { useState } from "react";
 import { registerRootComponent } from "expo";
 import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
@@ -9,6 +11,10 @@ import GameOverScreen from "./screens/GameOverScreen";
 import Colors from "./constants/colors";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    "open-sans": require("../assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("../assets/fonts/OpenSans-Bold.ttf"),
+  });
   const [pickedNum, setPickedNum] = useState();
   const [isGameOver, setIsGameOver] = useState(true);
 
@@ -22,6 +28,8 @@ export default function App() {
   let screen = <StartGameScreen pickNum={pickNum} />;
   if (pickedNum) screen = <GameScreen pickedNum={pickedNum} onGameOver={gameOverHandler} />;
   if (isGameOver && pickedNum) screen = <GameOverScreen />;
+
+  if (!fontsLoaded) return <AppLoading />;
 
   return (
     <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.rootScreen}>
