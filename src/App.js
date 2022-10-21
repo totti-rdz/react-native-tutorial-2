@@ -17,6 +17,7 @@ export default function App() {
   });
   const [pickedNum, setPickedNum] = useState();
   const [isGameOver, setIsGameOver] = useState(true);
+  const [guessRounds, setGuessRounds] = useState(0);
 
   const pickNum = (num) => {
     setIsGameOver(false);
@@ -25,9 +26,16 @@ export default function App() {
 
   const gameOverHandler = () => setIsGameOver(true);
 
+  const startNewGame = () => {
+    setPickedNum(NaN);
+    setIsGameOver(false);
+    screen = <StartGameScreen pickNum={pickNum} />;
+  };
+
   let screen = <StartGameScreen pickNum={pickNum} />;
   if (pickedNum) screen = <GameScreen pickedNum={pickedNum} onGameOver={gameOverHandler} />;
-  if (isGameOver && pickedNum) screen = <GameOverScreen />;
+  if (isGameOver && pickedNum)
+    screen = <GameOverScreen pickedNum={pickedNum} roundsNum={guessRounds} onStartNewGame={startNewGame} />;
 
   if (!fontsLoaded) return <AppLoading />;
 
