@@ -20,5 +20,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  numberText: { color: Colors.accent500, fontSize: 36, fontWeight: "bold" },
+  numberText: { color: Colors.accent500, fontSize: 36, fontFamily: "open-sans-bold" },
 });
