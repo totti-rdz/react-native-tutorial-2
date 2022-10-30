@@ -7,6 +7,7 @@ import InstructionText from "../components/ui/InstructionText";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Title from "../components/ui/Title";
 import generateRandomNumBetween from "../utils/generateRandomNumBetween";
+import GuessLogItem from "../components/game/GuessLogItem";
 
 let minBoundary = 1;
 let maxBoundary = 100;
@@ -32,6 +33,8 @@ const GameScreen = ({ pickedNum, onGameOver }) => {
     setCurrentGuess(newRandNum);
     setGuessRounds((current) => [newRandNum, ...current]);
   };
+
+  const guessRoundsListLength = guessRounds.length;
 
   useEffect(() => {
     minBoundary = 1;
@@ -63,12 +66,16 @@ const GameScreen = ({ pickedNum, onGameOver }) => {
           </View>
         </View>
       </Card>
-      <View>
+      <View style={styles.listContainer}>
         {/* .map() would be enough here, but for practicing purpose the same will be implemented with <Flatlist> */}
         {/* {guessRounds.map((guessRound) => (
           <Text key={guessRound}>{guessRound}</Text>
         ))} */}
-        <FlatList data={guessRounds} keyExtractor={(item) => item} renderItem={(itemData) => <Text>{itemData.item}</Text>} />
+        <FlatList
+          data={guessRounds}
+          keyExtractor={(item) => item}
+          renderItem={(itemData) => <GuessLogItem roundNum={guessRoundsListLength - itemData.index} guess={itemData.item} />}
+        />
       </View>
     </View>
   );
@@ -89,5 +96,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+  },
+  listContainer: {
+    flex: 1,
+    padding: 16,
   },
 });
