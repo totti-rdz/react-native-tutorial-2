@@ -24,7 +24,7 @@ export default function App() {
     setPickedNum(num);
   };
 
-  const gameOverHandler = () => setIsGameOver(true);
+  const gameOverHandler = (numberOfRounds) => {setIsGameOver(true); setGuessRounds(numberOfRounds)};
 
   const startNewGame = () => {
     setPickedNum(NaN);

@@ -43,7 +43,7 @@ const GameScreen = ({ pickedNum, onGameOver }) => {
 
   useEffect(() => {
     if (currentGuess === pickedNum) {
-      onGameOver();
+      onGameOver(guessRounds.length);
     }
   }, [currentGuess, pickedNum]);
 
