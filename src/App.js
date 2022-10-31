@@ -24,7 +24,10 @@ export default function App() {
     setPickedNum(num);
   };
 
-  const gameOverHandler = (numberOfRounds) => {setIsGameOver(true); setGuessRounds(numberOfRounds)};
+  const gameOverHandler = (numberOfRounds) => {
+    setIsGameOver(true);
+    setGuessRounds(numberOfRounds);
+  };
 
   const startNewGame = () => {
     setPickedNum(NaN);
@@ -40,16 +43,16 @@ export default function App() {
   if (!fontsLoaded) return <AppLoading />;
 
   return (
-    <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.rootScreen}>
-      <ImageBackground
-        source={require("../assets/images/background.png")}
-        resizeMode="cover"
-        style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}
-      >
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+      <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.rootScreen}>
+        <ImageBackground
+          source={require("../assets/images/background.png")}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImage}
+        >
+          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
   );
 }
 
